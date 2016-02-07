@@ -40,7 +40,7 @@ $app->match(
     '/newblog',
     function (Request $request) use ($app) {
         $array = array(
-            'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => true, 'comment' => '', 'posttitle' => ''
+            'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => 'gut', 'comment' => '', 'posttitle' => ''
         );
         if($request->isMethod('get'))
         {
@@ -54,8 +54,9 @@ $app->match(
                 $array['posttitle'] = $request->get('posttitle');
             }
             else{
-                $returnVal = true;
-
+                $returnVal = 'success';
+                $array['comment'] = $request->get('comment');
+                $array['posttitle'] = $request->get('posttitle');
             }
             $array['allCorrect'] = $returnVal;
         }
