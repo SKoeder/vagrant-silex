@@ -24,20 +24,44 @@ $app->get('/welcome-twig/{name}', function ($name) use ($app) {
 $app->get('/home', function() use ($app) {
     return $app['templating']->render(
         'home.html.php',
-        array('active' => 'home')
+        array('active' => 'home', 'title' => 'Home')
     );
 });
 
 $app->get('/blog', function() use ($app) {
     return $app['templating']->render(
         'blog.html.php',
-        array('active' => 'blog')
+        array('active' => 'blog', 'title' => 'Blog')
     );
 });
 
-$app->get('/newblog', function() use ($app) {
-    return $app['templating']->render(
-        'newblog.html.php',
-        array('active' => 'newblog')
-    );
-});
+
+$app->match(
+    '/newblog',
+    function (Request $request) use ($app) {
+        $array = array(
+            'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => true, 'comment' => '', 'posttitle' => ''
+        );
+        if($request->isMethod('get'))
+        {
+
+        }
+        elseif($request->isMethod('post'))
+        {
+            if(empty($request->get('posttitle','')) || empty($request->get('comment',''))) {
+                $returnVal = false;
+                $array['comment'] = $request->get('comment');
+                $array['posttitle'] = $request->get('posttitle');
+            }
+            else{
+                $returnVal = true;
+
+            }
+            $array['allCorrect'] = $returnVal;
+        }
+        return $app['templating']->render(
+            'newblog.html.php',
+            $array
+        );
+
+    });
