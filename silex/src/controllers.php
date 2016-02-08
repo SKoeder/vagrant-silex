@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 
 
-
 $app->get('/welcome/{name}', function ($name) use ($app) {
     return $app['templating']->render(
         'hello.html.php',
@@ -21,14 +20,14 @@ $app->get('/welcome-twig/{name}', function ($name) use ($app) {
     );
 });
 
-$app->get('/home', function() use ($app) {
+$app->get('/home', function () use ($app) {
     return $app['templating']->render(
         'home.html.php',
         array('active' => 'home', 'title' => 'Home')
     );
 });
 
-$app->get('/blog', function() use ($app) {
+$app->get('/blog', function () use ($app) {
     return $app['templating']->render(
         'blog.html.php',
         array('active' => 'blog', 'title' => 'Blog')
@@ -42,22 +41,14 @@ $app->match(
         $array = array(
             'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => 'gut', 'comment' => '', 'posttitle' => ''
         );
-        if($request->isMethod('get'))
-        {
-
-        }
-        elseif($request->isMethod('post'))
-        {
-            if(empty($request->get('posttitle','')) || empty($request->get('comment',''))) {
+        if ($request->isMethod('post')) {
+            if (empty($request->get('posttitle', '')) || empty($request->get('comment', ''))) {
                 $returnVal = false;
-                $array['comment'] = $request->get('comment');
-                $array['posttitle'] = $request->get('posttitle');
-            }
-            else{
+            } else {
                 $returnVal = 'success';
-                $array['comment'] = $request->get('comment');
-                $array['posttitle'] = $request->get('posttitle');
             }
+            $array['comment'] = $request->get('comment');
+            $array['posttitle'] = $request->get('posttitle');
             $array['allCorrect'] = $returnVal;
         }
         return $app['templating']->render(
