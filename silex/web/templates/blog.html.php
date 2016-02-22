@@ -20,7 +20,7 @@ $slots = $view['slots'];
                            <strong><?= substr($entry["title"], 0, 80); ?></strong>
                             am <?= $entry["created_at"]; ?>
                             <br>
-                            <?= $entry["text"]; ?>
+                            <?=  substr($entry["text"], 0, 80); ?>
                             <a href="/fullpost/<?= $entry["id"]; ?>">[...]</a>
                         </p>
                     <?php } ?>
