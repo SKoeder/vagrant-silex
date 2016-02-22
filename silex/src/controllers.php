@@ -85,3 +85,10 @@ $app->match(
             $array
         );
     });
+
+$app->get('/login', function () use ($app, $template) {
+    return $template->render(
+        'login.html.php',
+        array('active' => 'login', 'title' => 'login')
+    );
+});

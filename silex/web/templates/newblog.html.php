@@ -34,7 +34,6 @@ $slots = $view['slots'];
                     <div>
                         <?php if ($allCorrect != 'success') : ?>
                             <form name="newpost" method="post" action="/newblog">
-
                                 <div class="form-group">
                                     <input type="text" name="posttitle" class="form-control"
                                            placeholder="Gib einen Titel an" value="<?= $posttitle ?>">
