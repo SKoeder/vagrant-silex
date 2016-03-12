@@ -24,10 +24,13 @@ $app->get('/welcome-twig/{name}', function ($name) use ($app) {
     );
 });
 
-$app->get('/home', function () use ($app, $template) {
+$app->get('/home', function () use ($app, $template, $dbConnection) {
+    $posts = $dbConnection->fetchAll(
+        "SELECT * FROM blog_post WHERE created_at = CURRENT_DATE "
+    );
     return $template->render(
         'home.html.php',
-        array('active' => 'home', 'title' => 'Home')
+        array('active' => 'home', 'title' => 'Home', 'posts' => $posts)
     );
 });
 
@@ -75,7 +78,8 @@ $app->match(
                     array(
                         'title' => $request->get('posttitle'),
                         'text' => $request->get('comment'),
-                        'created_at' => date('c')
+                        'created_at' => date('c'),
+                        'author' => $user['username']
                     )
                 );
             }
