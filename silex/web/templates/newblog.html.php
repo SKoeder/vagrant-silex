@@ -13,6 +13,7 @@ $slots = $view['slots'];
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">New Blog Post</h3>
+                    <h3>von <?= $username?></h3>
                 </div>
                 <div class="panel-body">
                     <div>

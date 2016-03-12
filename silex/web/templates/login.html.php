@@ -20,9 +20,9 @@ $slots = $view['slots'];
                     <h3 class="panel-title">Anmelden</h3>
                 </div>
                 <div class="panel-body">
-                <form name="login" method="post" action="/newblog">
+                <form name="login" method="post" action="/signin">
                     <div class="form-group">
-                        <input type="text" name="user" class="form-control"
+                        <input type="text" name="username" class="form-control"
                                placeholder="Benutzername eingeben" required autofocus>
                     </div>
                     <div class="form-group">

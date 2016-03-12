@@ -57,8 +57,11 @@ $app->match(
         if (!$request->isMethod('post') && !$request->isMethod('get')) {
             $app->abort(405);
         }
+        if (null === $user = $app['session']->get('user')) {
+            return $app->redirect('/login');
+        }
         $array = array(
-            'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => false, 'comment' => '', 'posttitle' => ''
+            'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => false, 'comment' => '', 'posttitle' => '', 'username' => $user['username']
         );
 
         if ($request->isMethod('post')) {
@@ -91,4 +94,10 @@ $app->get('/login', function () use ($app, $template) {
         'login.html.php',
         array('active' => 'login', 'title' => 'login')
     );
+});
+
+$app->post('/signin', function () use ($app) {
+
+    $app['session']->set('user', array('username' => $_POST['username']));
+    return $app->redirect('/newblog');
 });
