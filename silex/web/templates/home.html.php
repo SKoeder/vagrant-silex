@@ -10,35 +10,55 @@ $slots = $view['slots'];
 <div class="container">
     <header>
         <div class="jumbotron">
-            <h1>Bootstrap Tutorial</h1>
-            <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first
-                projects on the web.</p>
-            <button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-search"></span> Search
-            </button>
+            <h1>Mein eigener Blog</h1>
+            <p>Diesen Blog habe ich im Rahmen der Web Engeniering erstellt.
+                Bitte melden Sie sich doch an und verfassen Ihren eigenen Blogeintrag.
+                Sie können natürlich auch nur die anderen Beiträge anschauen</p>
         </div>
     </header>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <ul class="list-group">
-                <li class="list-group-item list-group-item-success">First item</li>
-                <li class="list-group-item list-group-item-info">Second item</li>
-                <li class="list-group-item list-group-item-warning">Third item</li>
-                <li class="list-group-item list-group-item-danger">Fourth item</li>
+                <li class="list-group-item"><a href="/Blog">Blog</a></li>
+                <li class="list-group-item"><a href="/newblog">Blogeintrag verfassen</a></li>
+                <li class="list-group-item"><a href="/login">Einloggen</a></li>
             </ul>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="panel panel-default">
-                <div class="panel-body">Lorem ipsum dolor sit amet, facete docendi nec te. Molestiae abhorreant
-                    suscipiantur cum in, no per suscipit lobortis consequat. Mei an cibo lorem definitiones. Homero
-                    facilisis vel ea, te est liber viris partiendo. An modo praesent consulatu quo.
+                <div class="panel-heading">
+                    <h3 class="panel-title">Heutige Posts</h3>
+                </div>
+                <div class="panel-body">
+                    <?php foreach ($posts as $entry) { ?>
+                        <p>
+                            <strong><?= $entry["title"]; ?></strong>
+                            von <?= $entry["author"]; ?>
+                            <br>
+                            <?=   substr($entry["text"], 0, strpos($entry["text"], '.')); ?>
+                            <a href="/fullpost/<?= $entry["id"]; ?>">[...]</a>
+                        </p>
+                        <hr>
+                    <?php } ?>
+                    <a href="/blog">Ältere Blogeinträge</a>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="panel panel-default">
-                <div class="panel-body">Lorem ipsum dolor sit amet, facete docendi nec te. Molestiae abhorreant
-                    suscipiantur cum in, no per suscipit lobortis consequat. Mei an cibo lorem definitiones. Homero
-                    facilisis vel ea, te est liber viris partiendo. An modo praesent consulatu quo.
+                <div class="panel-heading">
+                    <h3 class="panel-title">Anmelden</h3>
+                </div>
+                <div class="panel-body">
+                    <form name="login" method="post" action="/signin">
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control"
+                                   placeholder="Benutzername eingeben" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

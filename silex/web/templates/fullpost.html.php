@@ -15,7 +15,8 @@ $slots = $view['slots'];
                     <h3 class="panel-title"><?= $posts["title"] ?> am <?= $posts["created_at"] ?></h3>
                 </div>
                 <div class="panel-body">
-                            <?= $posts["text"] ?>
+                    <?= $posts["text"] ?><hr>
+                    von <?= $posts["author"] ?>
                     <hr>
                     <a href="/blog">zurück</a>
                 </div>
