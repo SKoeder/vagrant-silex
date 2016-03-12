@@ -58,14 +58,14 @@ $app->match(
             $app->abort(405);
         }
         $array = array(
-            'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => 'gut', 'comment' => '', 'posttitle' => ''
+            'active' => 'newblog', 'title' => 'New Blog Post', 'allCorrect' => false, 'comment' => '', 'posttitle' => ''
         );
 
         if ($request->isMethod('post')) {
             if (empty($request->get('posttitle', '')) || empty($request->get('comment', ''))) {
                 $returnVal = false;
             } else {
-                $returnVal = 'success';
+                $returnVal = true;
 
                 $dbConnection->insert(
                     'blog_post',

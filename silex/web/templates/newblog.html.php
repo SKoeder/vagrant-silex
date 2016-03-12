@@ -16,7 +16,7 @@ $slots = $view['slots'];
                 </div>
                 <div class="panel-body">
                     <div>
-                        <?php if ($allCorrect == 'success')  : ?>
+                        <?php if ($allCorrect == true)  : ?>
                             <div class="panel panel-success">
                                 <div class="panel-heading">Erfolgreich Veröffentlicht</div>
                                 <div class="panel-body">
@@ -28,19 +28,14 @@ $slots = $view['slots'];
                     </div>
                     <div>
                         <?php if ($allCorrect == false) : ?>
-                            <div class="alert alert-danger" role="alert">Bitte alle Felder ausfüllen</div>
-                        <?php endif; ?>
-                    </div>
-                    <div>
-                        <?php if ($allCorrect != 'success') : ?>
                             <form name="newpost" method="post" action="/newblog">
                                 <div class="form-group">
                                     <input type="text" name="posttitle" class="form-control"
-                                           placeholder="Gib einen Titel an" value="<?= $posttitle ?>">
+                                           placeholder="Gib einen Titel an" required value="<?= $posttitle ?>">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" rows="5" name="comment"
-                                              placeholder="Gib einen Text an"><?= $comment ?></textarea>
+                                              placeholder="Gib einen Text an" required><?= $comment ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Absenden</button>
