@@ -12,8 +12,9 @@ $slots = $view['slots'];
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">New Blog Post</h3>
-                    <h3>von <?= $username?></h3>
+                    <h3 class="panel-title">Neuer Blogeintrag<span
+                            class="pull-right">angemeldet als <?= $username ?></span>
+                    </h3>
                 </div>
                 <div class="panel-body">
                     <div>
@@ -32,7 +33,8 @@ $slots = $view['slots'];
                             <form name="newpost" method="post" action="/newblog">
                                 <div class="form-group">
                                     <input type="text" name="posttitle" class="form-control"
-                                           placeholder="Gib einen Titel an" required value="<?= $posttitle ?>">
+                                           placeholder="Gib einen Titel an" autofocus required
+                                           value="<?= $posttitle ?>">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" rows="5" name="comment"

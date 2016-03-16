@@ -105,3 +105,8 @@ $app->post('/signin', function () use ($app) {
     $app['session']->set('user', array('username' => $_POST['username']));
     return $app->redirect('/newblog');
 });
+
+$app->get('/delete/{id}', function ($id) use ($app, $dbConnection) {
+    $dbConnection->delete('blog_post', array('id' => $id));
+    return $app->redirect('/blog');
+});

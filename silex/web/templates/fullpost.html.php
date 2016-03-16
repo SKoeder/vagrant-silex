@@ -15,10 +15,12 @@ $slots = $view['slots'];
                     <h3 class="panel-title"><?= $posts["title"] ?> am <?= $posts["created_at"] ?></h3>
                 </div>
                 <div class="panel-body">
-                    <?= $posts["text"] ?><hr>
+                    <?= $posts["text"] ?>
+                    <hr>
                     von <?= $posts["author"] ?>
                     <hr>
                     <a href="/blog">zurück</a>
+                    <a href="/delete/<?= $posts["id"] ?>" class="pull-right">löschen</a>
                 </div>
             </div>
         </div>

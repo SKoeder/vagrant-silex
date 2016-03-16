@@ -16,14 +16,13 @@ $slots = $view['slots'];
                 </div>
                 <div class="panel-body">
                     <?php foreach ($posts as $entry) { ?>
-                        <p>
                            <strong><?= $entry["title"]; ?></strong>
                             am <?= $entry["created_at"]; ?>
                             von <?= $entry["author"]; ?>
                             <br>
-                            <?=  substr($entry["text"], 0, strpos($entry["text"], '.')); ?>
+                            <?=  preg_replace("/[^ ]*$/", '', substr($entry["text"], 0, 100)); ?>
                             <a href="/fullpost/<?= $entry["id"]; ?>">[...]</a>
-                        </p>
+                            <hr>
                     <?php } ?>
                 </div>
             </div>

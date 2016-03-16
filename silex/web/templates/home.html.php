@@ -19,7 +19,7 @@ $slots = $view['slots'];
     <div class="row">
         <div class="col-sm-3">
             <ul class="list-group">
-                <li class="list-group-item"><a href="/Blog">Blog</a></li>
+                <li class="list-group-item"><a href="/blog">Blog</a></li>
                 <li class="list-group-item"><a href="/newblog">Blogeintrag verfassen</a></li>
                 <li class="list-group-item"><a href="/login">Einloggen</a></li>
             </ul>
@@ -35,7 +35,7 @@ $slots = $view['slots'];
                             <strong><?= $entry["title"]; ?></strong>
                             von <?= $entry["author"]; ?>
                             <br>
-                            <?=   substr($entry["text"], 0, strpos($entry["text"], '.')); ?>
+                            <?= substr($entry["text"], 0, strpos($entry["text"], '.')); ?>
                             <a href="/fullpost/<?= $entry["id"]; ?>">[...]</a>
                         </p>
                         <hr>
